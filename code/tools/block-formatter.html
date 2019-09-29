@@ -1,0 +1,53 @@
+<p id=d><script>
+
+//
+// This code tries to create a code rectangle from the oneliner version and check
+// if it works. All possible rectangles are logged to the browser console to be
+// copy-pasted.
+//
+// Code rectangles rarely works, so you can:
+// 
+// - Print a code rectangle anyway. The rectangle must be copied and then turned by
+//   the user to a oneliner in order to run it. Not bad but it could be better.
+//
+// - Add some spaces to the oneliner and rerun this script until you get a working
+//   rectangle. Good luck!
+//
+// - Manually adapt one of the code rectangles until it works. Try starting from one
+//   of them and turn it to a one character wider rectagle, moving the code along the
+//   lines. Good luck!
+//   
+
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function() {
+	if (xmlhttp.readyState == 4)
+		if ((xmlhttp.status == 200)||(xmlhttp.status==0)) {
+			code=xmlhttp.responseText;				
+			for (var split=10;split<=code.length/2;split++) {
+			if (code.length%split==0) {
+				pos=0;
+				out="";
+				mout="";
+				line=1;
+				console.log("--- ",split)
+				while (pos<code.length) {
+					out+=code.substr(pos,split)+"\n";
+					mout+=line+" "+code.substr(pos,split)+"\n";
+					pos+=split;
+					line++;
+				}				
+				works=false;
+				try {
+					eval("try{\n"+out.substr(out.indexOf("<script>")+8,out.length-out.indexOf("<script>")-18)+"\n}catch(e){}");
+					works=true;
+				} catch (e) {
+				}
+				if (works) console.warn("It works!\n\n\n"+out);
+				else console.log("\n\n\n"+out);
+			}
+		}
+	}
+}
+xmlhttp.open("GET", "../oneline.html", true);
+xmlhttp.send();
+</script>
