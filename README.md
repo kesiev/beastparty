@@ -50,7 +50,7 @@ The <tt>prints</tt> directory includes some printable SVGs:
   * <tt>sources.svg</tt> is a single card version with text boxes for rules, notes and code. While you can change it as you please, you may experience some problems with fonts and text sizes using [Inkscape](https://inkscape.org/). So...
   * <tt>print.svg</tt> is a full vector version with three cards. You can use this file for printing but the text is no longer editable.
 
-I've used the **KenVector Bold** font for the logo, the **Rocket Propelled** for the smaller text, the default **sans-serif** for the rules and **monospace** for the game code.
+I've used the **KenVector Bold** font for the logo, the **Rocket Propelled** for the smaller text, the default **sans-serif** for the rules and **monospace** for the game code. If the printed cards don't fit the sleeves, try printing them smaller (ie. 98%).
 
 ## Objectives
 
