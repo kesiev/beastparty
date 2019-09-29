@@ -68,7 +68,7 @@ For this project I set myself these rules:
 
 ## Credits
 
-  * [Sgananzium](http://www.sgananzium.it/), [TeOoh!](https://it-it.facebook.com/RecensioniMinute) and [Alkyla](https://www.youtube.com/channel/UCC7NoaDQUH4tTLxCeVZm0oQ) for spreading passion, information, culture and fun on the very underrated entertainment form here in Italy
+  * [Sgananzium](http://www.sgananzium.it/), [TeOoh!](https://it-it.facebook.com/RecensioniMinute) and [Alkyla](https://www.youtube.com/channel/UCC7NoaDQUH4tTLxCeVZm0oQ) for spreading passion, information, culture and fun about board gaming here in Italy
   * [Darwin Kastle](https://boardgamegeek.com/boardgamedesigner/4059/darwin-kastle) for his super compact, flexible, clever and fun card games.
   * **Stefano Caroli**, **Massimo Emmanuele** and **Romolo Camplani** for sharing fun and thoughts on board games during lunch breaks
   * [Bianca](http://www.linearkey.net/) for sharing her life with me
