@@ -64,9 +64,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.8284271"
-     inkscape:cx="255.50773"
-     inkscape:cy="539.28551"
+     inkscape:zoom="2"
+     inkscape:cx="242.04589"
+     inkscape:cy="608.05524"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -84,7 +84,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -193,13 +193,13 @@
     <text
        transform="rotate(-13.437314)"
        id="text6038"
-       y="494.84775"
-       x="147.26434"
+       y="496.67142"
+       x="146.82863"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;display:inline;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.5859375px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        xml:space="preserve"><tspan
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.75px;line-height:1.25;font-family:'KenVector Bold';-inkscape-font-specification:'KenVector Bold, ';letter-spacing:-2.34375px;fill:#ffffff;stroke-width:0.5859375px"
-         y="494.84775"
-         x="146.09247"
+         y="496.67142"
+         x="145.65675"
          id="tspan6036"
          sodipodi:role="line">Beast Party</tspan></text>
     <rect
@@ -681,13 +681,13 @@
        transform="matrix(0.97184064,-0.23426965,0.23442049,0.97246642,0,0)"
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Rocket Propelled';-inkscape-font-specification:'Rocket Propelled';letter-spacing:0px;word-spacing:0px;display:inline;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1.12482226px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="66.736595"
-       y="502.22833"
+       x="66.297058"
+       y="504.05054"
        id="text5823-7"><tspan
          sodipodi:role="line"
          id="tspan5821-9"
-         x="66.736595"
-         y="502.22833"
+         x="66.297058"
+         y="504.05054"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.34650469px;line-height:1.25;font-family:'Rocket Propelled';-inkscape-font-specification:'Rocket Propelled';fill:#ffffff;fill-opacity:1;stroke-width:1.12482226px">IN JUNGLE POLITICS THE LOUDEST PARTY WINS!</tspan></text>
     <text
        transform="scale(0.9996782,1.0003219)"
