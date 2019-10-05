@@ -18,7 +18,7 @@ It's my little tribute to [deck-building card games](https://en.wikipedia.org/wi
 
 ## Game rules
 
-Both players start with the **same 9 cards deck and 50 influence points**. Shuffle all decks. A turn starts **picking 5 cards from your deck** (if empty, replace it with your shuffled discard pile) and **filling the market to 5 cards** using the 50 cards market deck.
+Both players start with the **same 10 cards deck and 50 influence points**. Shuffle all decks. A turn starts **picking 5 cards from your deck** (if empty, replace it with your shuffled discard pile) and **filling the market to 5 cards** using the 50 cards market deck.
 
 <div align="center" style="margin:60px 0">
     <p><img src="images/thecard.png"></p>
@@ -30,6 +30,16 @@ You can play any number of cards from your hand in front of you and:
   - **MUTE:** move one card from the opponent party to his discard pile and pick a new card from your deck if the sum of played **MP** is equal or greater the opponent card **LP**.
 
  All your played cards are discarded after every action. **The turn ends** when you play your last card from your hand: the remaining played cards are your party. **Reduce your influence points by the sum of the opponent party LP and if hits 0, you lose!** Your opponent discards his party and starts his turn. Keep playing until there's a winner. **Good luck!**
+
+## The digital version
+
+The digital version of the game, which is the one you can print, includes a single player vs. computer mode and a _pass and play_ 2 players mode. You can switch mode clicking the underlined "CMP" label at the beginning of the game.
+
+<div align="center" style="margin:60px 0">
+    <p><img src="images/tutorial.png"></p>
+</div>
+
+Once you've beaten the computer, try winning the game with **a lot** of points left! It's possible to beat the computer with a near perfect!
 
 ## Code flavors
 
@@ -47,7 +57,7 @@ The <tt>code</tt> directory includes many versions of the game sources:
 
 The <tt>prints</tt> directory includes some printable SVGs:
 
-  * <tt>sources.svg</tt> is a single card version with text boxes for rules, notes and code. While you can change it as you please, you may experience some problems with fonts and text sizes using [Inkscape](https://inkscape.org/). So...
+  * <tt>sources.svg</tt> is a single card version with text boxes for rules, notes and code. While you can change it as you please, you may experience some problems with fonts and text sizes using [Inkscape](https://inkscape.org/)
   * <tt>print.svg</tt> is a full vector version with three cards. You can use this file for printing but the text is no longer editable.
   * <tt>size-full.pdf</tt> is a PDF version of <tt>print.svg</tt>
   * <tt>size-98.pdf</tt> is a PDF version of <tt>print.svg</tt>, printed scaled to 98% for easier sleeving
@@ -67,11 +77,12 @@ For this project I set myself these rules:
   * Rules must be straightforward, possibly inspired by famous deckbuilding games (In this case I've got inspired by [Darwin Kastle](https://boardgamegeek.com/boardgamedesigner/4059/darwin-kastle)'s [Star Realms](https://www.starrealms.com/))
   * The game must be a 2-players game and the coded version must be played versus the computer
   * The computer AI must be challenging enough to force the player on understanding the rules and building some simple strategy to win
+  * **(Added during the second review)** The game must feature a 2-players mode
 
 ## Credits
 
   * [Sgananzium](http://www.sgananzium.it/), [TeOoh!](https://it-it.facebook.com/RecensioniMinute) and [Alkyla](https://www.youtube.com/channel/UCC7NoaDQUH4tTLxCeVZm0oQ) for spreading passion, information, culture and fun about board gaming here in Italy
-  * [Darwin Kastle](https://boardgamegeek.com/boardgamedesigner/4059/darwin-kastle) for his super compact, flexible, clever and fun card games.
+  * [Darwin Kastle](https://boardgamegeek.com/boardgamedesigner/4059/darwin-kastle) for his super compact, flexible, clever and fun card games
   * **Stefano Caroli**, **Massimo Emmanuele** and **Romolo Camplani** for sharing fun and thoughts on board games during lunch breaks
   * [Bianca](http://www.linearkey.net/) for sharing her life with me
   

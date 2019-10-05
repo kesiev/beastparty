@@ -1,5 +1,10 @@
 <p id=d><script>
 
+function LG(a) {
+	console.log(a);
+	return a;
+}
+
 //
 //     .----. .----.  .--.   .----..---.    .----.  .--.  .----.  .---..-.  .-.
 //     | {}  }| {_   / {} \ { {__ {_   _}   | {}  }/ {} \ | {}  }{_   _}\ \/ / 
@@ -10,7 +15,8 @@
 // ------------------        (A tiny deckbuilding game)         ------------------
 //
 // RULES:
-// Both players start with the same 9 cards deck and 30 influence points. Shuffle
+//
+// Both players start with the same 10 cards deck and 50 influence points. Shuffle
 // all decks. A turn starts picking 5 cards from your deck (if empty, replace it
 // with your shuffled discard pile) and filling the market to 5 cards using the 50
 // cards market deck. You can play any number of cards from your hand in front of
@@ -31,6 +37,7 @@
 //
 
 // --- CODE GLOBAL SYMBOLS SUMMARY
+// Packer score: 936
 
 // Human:        CPU:
 // A: Deck     | F: Deck
@@ -42,23 +49,21 @@
 // K: shop deck
 // L: shop hand
 
-// M: Next turn
+// M: (not used)
 // O: Players data
 // P: Execute x code y times
 // Q: Sum values on player table
-// R: Remove a card from a set
+// R: Remove a card from a set and add to another one
 // S: Hand filler
 // T: Discard all table cards
 // U: Current turn
 // V: Click on player hand
+// W: Render cards row
 // X: Click on opponent table
 // Y: Click on market hand / Render the screen
 // Z: (not used)
-// W: Render cards row
 
 // $: window
-// p: "push"
-// s: "splice"
 // o: "ABCDEFGHIJKL"
 
 // --- SOURCES
@@ -73,115 +78,114 @@ P=(x,y=50)=>[...Array(y).keys( // Creates an array with numbers from 0 to y
 		// But first...
 		y=0 // ...reset the counter
 	)|y // ...then returns the counter result
-
 )].map(x); // ...and iterate all the numbers
 
-// --- DEFINE FUNCTION: Remove a card from a set
-R=(x,y)=>x[s="splice"]( // From the given set remove...
-	y,1 // ...just one element at given position
-)[0]; // And returns its value
+// --- DEFINE FUNCTION: Remove a card from a set and add to another one...
+R=(x,y,z)=>x.splice(0,0, // Add to the top of this set..
+	...y.splice( // From the given set remove...
+		z,1 // ...just one element at given position
+	)
+); // And returns its value
 
 // --- DEFINE FUNCTION: Player hand filler
 S=x=>P(y=>
 	B[x]? // If there are enough cards in hand...
 		// Does nothing. We have some room for...
-		
-		// --- DEFINE FUNCTION: Render a row of cards
-	  	W=x=>
-	  	`<br>${
-	  		$[x[0][1]].map((w,z)=>[ // For all the cards in the deck...
-	  			`<svg `, // NOTE! Packer eats this trailing space. Remember to add it back!
-	  			`150 onclick=Y(${H*C>0?x[0][0]:""}(${z}))><`, // Prepare SVG area and set onclick event callback
-	  			`150 rx=9 /><`, // Draw black rounded background (NOTE! Packer eats this space before /. Remember to add it back!)
-	  			`50 fill=red y=9 />${  // Draw the red band (NOTE! Packer eats this space before /. Remember to add it back!)
-	  				P( // Draw the card symbols
-	  					z=>`<text x=${(z // Is this a card symbol?
-	  						?`7 fill=red y=${z*2+6}0>&#12826${z};` // ...if yes, draw card symbol (Hash is quoted to fix the BODY onload oneliner)
-	  						:`30 y=44 font-size=30>&#1280` // ...else prepare animal emoji (Hash is quoted to fix the BODY onload oneliner)
-	  					)+w[z]}</text>` // Draw card value or complete the animal emoji
-	  				,5)
-	  			}</svg>`
-	  		].join`rect width=96 height=`)}<hr>`
+
+		// --- DEFINE FUNCTION: Click on market hand...
+		Y=x=> // If the selected card exists in the market...
+			Q(2)<L[x][1] // Is the sum of the played card production less than the card value? /* -- */
+			|| // ...if no (so it's enough for purchasing)
+			T( // ...discard all the cards on the table
+				// But first...
+				R(D,L,x) // ...add to the player discard pile the removed card from the market
+			)
+
 
 	: // ...else
 		A+A? // If there are cards in the player deck...
-			B[p="push"]( // Add to the player hand...
-				R( // ...a card picked from...
-					A, // ...the player deck
-					A.length*Math.random( // ...randomly
-						// Since the argument here is not useful we have some room for...
-						
-						// --- DEFINE FUNCTION: Click on player hand
-						V=x=>E[p]( // Add to the table...
-							R(B,x) // ...the player card
-						)&& // ...and
-						B+B|| // ...if the hand is not empty, does nothing, else...
-						M( // ...End current turn. We have some room for...
-							
-							// --- DEFINE FUNCTION: Click on opponent table
-							X=x=>J[x]? // If the selected card exists in opponent table...
-								Q(3)<J[x][4] // Is the damage on the table is less than the card defense? /* -- */
-								|| // ...if no (so it's enough for attacking)
-								S( // ...add cards to the player hand...
-									B.length, // ...to its current number of cards (ie. one more card)
-									// ...but first
-									T( // ...Discard the current table
-										// ...but first
-										I[p]( // Add to opponent discard deck...
-											R(J,x) // ...the removed card from the opponent table
-										)
-									)
-								)
-							:0 /* ...else does nothing. ROOMTO any function */
+			R( // ...Add a card...
+				B, // ...to the player hand add...
+				A, // ...a card from the player deck...
+				A.length*Math.random( // ...randomly
+					// Since the argument here is not useful we have some room for...
+					
+					// --- DEFINE FUNCTION: Render a row of cards
+					W=x=>
+					`<br>${
+						$[x[0][1]].map((w,z)=>[ // For all the cards in the deck...
+							`<svg `, // NOTE! Packer eats this trailing space. Remember to add it back!
+							`150 onclick=X(${H*C>0?x[0][0]:""}(${z}))><`, // Prepare SVG area and set onclick event callback
+							`150 rx=9 /><`, // Draw black rounded background (NOTE! Packer eats this space before /. Remember to add it back!)
+							`50 fill=red y=9 />${  // Draw the red band (NOTE! Packer eats this space before /. Remember to add it back!)
+								P( // Draw the card symbols
+									z=>`<text x=${(z // Is this a card symbol?
+										?`7 fill=red y=${z*2+6}0>&#12826${z};` // ...if yes, draw card symbol (Hash is quoted to fix the BODY onload oneliner)
+										:`30 y=44 font-size=30>&#1280` // ...else prepare animal emoji (Hash is quoted to fix the BODY onload oneliner)
+									)+w[z]}</text>` // Draw card value or complete the animal emoji
+								,5)
+							}</svg>`
+						].join`rect width=96 height=`)}<hr>`
 
-						)
-
-					)
-				)
+				)				
 			)
 		: // ...else
-			A[p]( // Add to the player deck...
-				...D[s]`` // ...all the picked cards from discard deck
+
+			P(x=>R(A,D)) // Add to the player deck all the picked cards from discard deck
+
+);
+
+// --- DEFINE FUNCTION: Click on player hand
+V=x=>
+	R(E,B,x) // ...add to the table the player card...
+	&& // ...and
+	B+B|| // ...if the hand is not empty, does nothing, else...
+	// --- DEFINE FUNCTION: Next turn
+	P(  // Run AI, if needed...
+		x=>U&&M&& // If it's opponent turn (U is true-ish) and is playing vs. CPU...
+
+			// Simple CPU strategy: Try buying the strongest card from the market and beating the best cards
+			// from the opponent table using the weakest cards from his hand. Starts beating the opponent
+			// first, hoping for a better hand from the next picked card. Keep playing until his turn is ended.
+
+
+			V( // Play first card in hand...
+				// But first...
+
+				// Play is done at start: it is not useful for the first cycle but skips playing the last card from
+				// the hand, following the rules.
+
+				X(0)* // ...attack the weakest card from the player table or...
+				Y(0)* // ...try to buy the strongest card from the market.
+
+				// Try attacking/purchasing all cards with current played cards...
+				L.reverse( // Reverse the market order (strong to weak) but first... /* -- */
+					[L,J,B].map(x=>x.sort((x,y)=>x[4]-y[4])) // Sort the hand, the market and the opponent table from weak to strong. /* -- */
+				)
 			)
-);
-
-// --- DEFINE FUNCTION: Next turn
-M=x=>P(  // Run AI, if needed...
-	x=>U&& // If it's CPU turn (when U is true-ish)...
-
-		// Simple CPU strategy: Try buying the strongest card from the market and beating the best cards
-		// from the opponent table using the weakest cards from his hand. Starts beating the opponent
-		// first, hoping for a better hand from the next picked card. Keep playing until his turn is ended.
-
-		// Try attacking/purchasing all cards with current played cards...
-		L.reverse( // Reverse the market order (strong to weak) but first... /* -- */
-			[L,J,B].map(x=>x.sort((x,y)=>x[4]-y[4])) // Sort the hand, the market and the opponent table from weak to strong. /* -- */
-		)+
-		V( // Then and play first card in hand...
-			// ROOMTO undefined returning function
-		)+
-		X(0)+ // ...attack the weakest card from the player table or...
-		Y(0) // ...try to buy the strongest card from the market.
-		
-	,
-	// ...but first
-	T( // ...Discard the current table
+			
+		,
 		// ...but first
-		U=!U, // ...alternate turn
-		B=L,A=K,S(4), // ...update market, swapping its decks with the player
-		P(x=> // ...Swap CPU variables with human and vice versa...
-			$[o[(x+U*5)%10]]= // Assign to: If U is true-ish FGHIJABCDE else ABCDEFGHIJ
-			O[x] // ...the cached values in order, resulting in a swap
-		,10), // for 10 variables (market variables K and L are skipped)
-		H[0]-=Q(4), // Apply damage of the cards remaining on table /* -- */
-		S(4) // ...give cards to player
-	) // (returns undefined, so AI runs for a while)
-);
+		T( // ...Discard the current table
+			// ...but first
+
+			U=!U, // ...alternate turn
+			B=L,A=K,S(4), // ...update market, swapping its decks with the player
+			P(x=> // ...Swap CPU variables with human and vice versa...
+				$[o[(x+U*5)%10]]= // Assign to: If U is true-ish FGHIJABCDE else ABCDEFGHIJ
+				O[x] // ...the cached values in order, resulting in a swap
+			,10), // for 10 variables (market variables K and L are skipped)
+			H[0]-=Q(4), // Apply damage of the cards remaining on table /* -- */
+			S(4) // ...give cards to player
+
+		) // (returns undefined, so AI runs for a while)
+	);
 
 // --- INITIALIZATION
 
 $=this; // Window shorthand.
 
+M= // Default configuration is vs. CPU
 U= // Set the turn counter to something true-ish (ie. CPU turn. Human goes first since CPU turn is ended at game start)
 O= // Creates a cache of pointers for all game variables (ie. A-L)
 [
@@ -201,36 +205,35 @@ O= // Creates a cache of pointers for all game variables (ie. A-L)
 				x>>4,  // 3: Card defense
 				x>>3   // 4: Card attack
 			].map(x=>x+1), // +1 all attributes
-			y<9?9:50 // 9 cards to the players, 50 to the deck
+			y<9?10:50 // 10 cards to the players, 50 to the deck
 		)
 );
 
 (
-	
-	// --- DEFINE FUNCTION: Click on market hand...
-	Y=x=>L[x]? // If the selected card exists in the market...
-		Q(2)<L[x][1] // Is the sum of the played card production less than the card value? /* -- */
-		|| // ...if no (so it's enough for purchasing)
-		T( // ...discard all the cards on the table
-			// But first...
-			D[p]( // ...add to the player hand...				
-				R(L,x) // ...the removed card from the market
+
+	// --- DEFINE FUNCTION: Click on opponent table
+	X=x=>J[x]? // If the selected card exists in opponent table...
+		Q(3)<J[x][4] // Is the damage on the table is less than the card defense? /* -- */
+		|| // ...if no (so it's enough for attacking)
+		S( // ...add cards to the player hand...
+			B.length, // ...to its current number of cards (ie. one more card)
+			// ...but first
+			T( // ...Discard the current table
+				// ...but first
+				R(I,J,x) // ...add to opponent discard pile the removed card from the opponent table
 			)
 		)
-		: // ...or render the whole screen, if argument is invalid. (Reusing the function for two purposes)
-		d.innerHTML=`YOU:${C+W`VB`}TABLE${W`!E`}CPU:${H+W`XJ`}BUY${W`YL`}`
-
+	:
+		d.innerHTML=`YOU:${C+W`VB`}TABLE${W`!E`}<u onclick=X(M=!M)>${M?"CM":2-U}P</u>:${H+W`XJ`}BUY${W`YL`}` // ...else render screen
 )(
 
-	  M( // The first turn is immediately ended in order to initialize the remaining variables (Fill hands, market)
-	  	// Since argument here is not useful, we have room for...
+	  V(
+	  		// Since the argument here is not useful we have some room for...
 
 	  		// --- DEFINE FUNCTION: Discard all table cards
-			T=x=>D[p]( // Add to the player discard pile
-				...E[s]`` // ...all the cards picked from the player table
-			).x // (forces an undefined argument)
+			T=x=>P(x=>R(D,E)).x
 
-		)
+	  )
 
 )
 
